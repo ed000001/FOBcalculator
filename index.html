@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <title>Document</title>
+
+  <body>
+    <div class='container_calculator' id="container_calculator">
+        <h1 class='title_calculator'>Calculator</h1>
+
+  <form onsubmit="return false;">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label>How much is your bid?</label>
+        <select class="input-group-text" id="basic-addon1" >
+          <option value="Dollar" >Dollar $</option>
+          <option value="Yen">Yen ¥ </option>
+        </select>
+      </div>
+      <input required type="number" min='0' max="999999" class="form-control bid-amount" placeholder="bid" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+      <label>Choose Type </label>
+    </div>
+      <select required  class="form-control selectType" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        <option value=""  selected disabled>Select</option>
+        <option value="Sedan Max" title="ACCORD; BMW 5 SERIES; CAMRY; MERCEDES E CLASS; LEGACY W, LEGACY B4">Sedan Max</option>
+        <option value="Sedan Min" title="BMW 3SERIES, ALTEZZA; ASTRA W; AXELA; BELTA; MERCEDES C CLASS, IMPREZA W">Sedan Min</option>
+        <option value="Minivan, Big SUV" title="	ALPHARD; DELICA SPACEGEAR; ELGRAND; ELYSION; ESTIMA; GRANDIS; MPV; NOAH; SERENA; STEP WAGON; VOXY; TOYOTA LAND CRUISER PRADO">Minivan, Big SUV</option> 
+        <option value="Small SUV" title="IPSUM, ISIS, WISH; FUNCARGO; EDIX; RACTIS; SIENTA; SPACIO; SX4, MERS B CLASS, LEAF, PRIUS">Small SUV</option>
+        <option value="Small Hatchback" title="COLT; DEMIO; FIT; IST; MARCH; MINI; PASSO; POLO; SWIFT; VITZ">Small Hatchback</option>
+        <option value="Standard Hatchback and Minitruck" title="AIRWAVE; MERCEDES A CLASS; CALDINA; CIVIC, COLT PLUS; CUBE; GOLF; TIIDA, TIIDA LATIO, NOTE, NEW BEETLE">Standard Hatchback and Minitruck</option>
+      </select>
+    </div>
+
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend" >
+      <label>Choose Auction </label>
+    </div>
+      <select required  class="form-control" id="auction-list"  aria-label="Username" aria-describedby="basic-addon1">
+        <option value="" selected disabled>Select</option>
+      
+      </select>
+    </div>
+
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+      <label>Choose the Delivery Port</label>
+    </div>
+      <select  class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        <option value="">Poti</option>
+      </select>
+    </div>
+
+
+    <div class="display-result">
+        <div class="display-line">
+          <span>Container Price</span>
+          <span id="display-container-price">-</span>
+        </div>
+        <div class="display-line">
+          <span >FOB</span>
+          <span id="display-fob">-</span>
+        </div>
+        <div class="display-line">
+          <span>ADDITIONAL FEE</span>
+          <span id="display-additional-fee">-</span>
+        </div>
+        <div class="display-line display-total">
+          <span ><b>TOTAL</b></span>
+          <span id="total-sum">-</span>
+        </div>
+    </div>
+
+    <div id='display-info'>
+
+    </div>
+    
+    <div class="button-for-total">
+      
+      <input value="Calculate" id="btn-calculate" type="submit" class="btn btn-secondary btn-calculate"/>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+      </div>
+      <span>&#9432 The result is approximate. For detailed and precise info please contact us! </span>
+
+    </div>
+
+  </form>  
+  </div>
+  </body>
+</head>
+<script src="javaScript.js"></script>
+
+<body>
+  
+</body>
+</html>
