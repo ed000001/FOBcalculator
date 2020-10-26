@@ -50,13 +50,13 @@ function btnOnClickCaculation(){
 
    
    if(optionForBid.value < 10000){
-    displayFee.innerHTML = filteredServiceFee[2].inputValue
+    displayFee.innerHTML = `$ ${filteredServiceFee[2].inputValue }`
    } else if(optionForBid.value < 14300) {
-    displayFee.innerHTML = filteredServiceFee[4].inputValue
+    displayFee.innerHTML = `$ ${filteredServiceFee[4].inputValue}`
    } else if(optionForBid.value < 19000) {
-    displayFee.innerHTML = filteredServiceFee[6].inputValue
+    displayFee.innerHTML = `$ ${filteredServiceFee[6].inputValue }`
    } else  {
-    displayFee.innerHTML = filteredServiceFee[8].inputValue
+    displayFee.innerHTML = `$ ${filteredServiceFee[8].inputValue }`
    }
 
     if(selectType.value) {
@@ -87,13 +87,13 @@ function btnOnClickCaculation(){
 }
 
     if(!isNaN(fob)){
-        displayFob.innerHTML = +fob
+        displayFob.innerHTML =  `$  ${+fob}`
     }else if(auctionList.value) {
         displayFob.innerHTML = '-';
         displayInfo.innerHTML = "Please contact us for more information"
     }
     if(!isNaN(containerPrice)){
-        displayContainerPrice.innerHTML = +containerPrice
+        displayContainerPrice.innerHTML = `$  ${+containerPrice}`
     }else {
         displayContainerPrice.innerHTML = '-'
     }
