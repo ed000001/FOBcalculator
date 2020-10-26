@@ -6,17 +6,23 @@ let optionForBid = document.querySelector('.bid-amount')
 let optionForPortJapan = document.createElement("option")
 let btnCalculate = document.getElementById('btn-calculate')
 let selectType = document.querySelector('.selectType')
+let selectCurrency = document.querySelector('.selectCurrency')
 let totalSumElement = document.getElementById('total-sum')
 let displayFob = document.getElementById("display-fob")
 let displayContainerPrice = document.getElementById("display-container-price")
 let displayInfo = document.getElementById('display-info')
 let displayFee = document.getElementById('display-additional-fee')
 let arr1 = []
+let JPY;
 
 fetch('https://spreadsheets.google.com/feeds/cells/1Zxx_Js8KAt9ZkJvlG71tXlMaLvU-AtBrpAZsNM9q3Jk/1/public/full?alt=json')
 .then (data => data.json())
 .then(data => getData(data.feed.entry))
 
+fetch('https://api.exchangeratesapi.io/latest?base=USD')
+//fetch('http://data.fixer.io/api/latest?379b06ec79cabdc681902f53a0841ea3')
+.then(data => data.json())
+.then(data => JPY = data.rates.JPY)
 
 function getData(arr) {
     arr1 = []
@@ -40,23 +46,38 @@ btnCalculate.onclick = btnOnClickCaculation
 function btnOnClickCaculation(){
     let containerPrice;
     let fob;
+    let bidYen;
+    let bidDollar;
+    let serviceFee
    
+    if(selectCurrency.value == 'Dollar'){
+        bidDollar = optionForBid.value;
+        bidYen = (optionForBid.value * JPY).toFixed(2)
+    } else {
+        bidYen = optionForBid.value 
+        bidDollar = (optionForBid.value / JPY).toFixed(0)
+    }
+
+    console.log(bidDollar)
 
    let filteredCarType =  arr1.filter(i => i.col >= 4 && i.col <=5 )
    let filteredAuctionList = arr1.filter(i => i.col >= 7 && i.col <=10 )
    let filteredServiceFee = arr1.filter(i => i.col >=13 && i.col <=14)
 
-   console.log(optionForBid.value)
 
    
-   if(optionForBid.value < 10000){
-    displayFee.innerHTML = `$ ${filteredServiceFee[2].inputValue }`
-   } else if(optionForBid.value < 14300) {
-    displayFee.innerHTML = `$ ${filteredServiceFee[4].inputValue}`
-   } else if(optionForBid.value < 19000) {
-    displayFee.innerHTML = `$ ${filteredServiceFee[6].inputValue }`
+   if(bidYen <= 1000000){
+    serviceFee = filteredServiceFee[2].inputValue 
+    displayFee.innerHTML = `$ ${serviceFee}`
+   } else if(bidYen <= 1500000) {
+    serviceFee = filteredServiceFee[4].inputValue
+    displayFee.innerHTML = `$ ${serviceFee}`
+   } else if(bidYen <= 2000000) {
+       serviceFee = filteredServiceFee[6].inputValue 
+    displayFee.innerHTML = `$ ${serviceFee}`
    } else  {
-    displayFee.innerHTML = `$ ${filteredServiceFee[8].inputValue }`
+    serviceFee = filteredServiceFee[8].inputValue
+    displayFee.innerHTML = `$ ${serviceFee}`
    }
 
     if(selectType.value) {
@@ -101,7 +122,7 @@ function btnOnClickCaculation(){
     let totalSum = fob + +containerPrice
 
     if(totalSum && auctionList.value && selectType.value){
-        totalSumElement.innerHTML = `$ ${fob + +containerPrice + +optionForBid.value}`;
+        totalSumElement.innerHTML = `$ ${(fob + +containerPrice + +bidDollar + +serviceFee)}`;
         displayInfo.innerHTML = null;
     } else {
         displayFee.innerHTML = '-'
